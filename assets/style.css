@@ -17,16 +17,10 @@ textarea {
   padding: 10px;
 }
 
-
+.hour,
 .saveBtn {
   margin: 0;
   font-size: 1.25rem;
-  line-height: 80px;
-}
-
-.hour {
-  margin: 0;
-  font-size: 1rem;
   line-height: 80px;
 }
 
@@ -85,4 +79,13 @@ textarea {
 .saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
+}
+
+/* Improved fit of hour text for smaller screens */
+@media screen and (max-width:992px) {
+  .hour {
+    padding: 0;
+    font-size: .8rem;
+    text-align: left;
+  }
 }

@@ -12,10 +12,8 @@ for (let ii = startTime; ii < endTime+1; ii++) {
   // This AM/PM scheme is implemented to simplify instantiation of hour blocks
   let key = 'h' + (ii>12?ii-12:ii) + (ii>=12?'PM':'AM')
   if ((savedData != null)&&((key) in savedData)) {
-    console.log('loaded '+key + ': val : '+savedData[key])
     eventData[key] = savedData[key];
   } else {
-    console.log("not loaded")
     eventData[key] = '';
   }
 }
