@@ -17,10 +17,16 @@ textarea {
   padding: 10px;
 }
 
-.hour,
+
 .saveBtn {
   margin: 0;
   font-size: 1.25rem;
+  line-height: 80px;
+}
+
+.hour {
+  margin: 0;
+  font-size: 1rem;
   line-height: 80px;
 }
 

@@ -1,17 +1,22 @@
 var container = $(".container");
 
-const startTime = 17;
-const endTime = 24;
+// Schedule start and end times
+const startTime = 7;
+const endTime = 17;
 
 // Start with blank object and load any saved data that overlaps the current schedule hours
 var eventData = {};
 var savedData = loadLocal();
 
 for (let ii = startTime; ii < endTime+1; ii++) {
-  if ((savedData != null)&&(('h'+ii) in savedData)) {
-    eventData['h'+ii] = savedData['h'+ii];
+  // This AM/PM scheme is implemented to simplify instantiation of hour blocks
+  let key = 'h' + (ii>12?ii-12:ii) + (ii>=12?'PM':'AM')
+  if ((savedData != null)&&((key) in savedData)) {
+    console.log('loaded '+key + ': val : '+savedData[key])
+    eventData[key] = savedData[key];
   } else {
-    eventData['h'+ii] = '';
+    console.log("not loaded")
+    eventData[key] = '';
   }
 }
 
@@ -35,7 +40,8 @@ for (let ii = startTime; ii < endTime+1; ii++) {
 
   let hour = $('<p>');
   hour.addClass('hour col-1 h-100');
-  hour.text(ii);
+  let hourText = (ii>12?ii-12:ii)+(ii>=12?'PM':'AM');
+  hour.text(hourText);
 
   let eventBlock = $('<textarea>');
 
@@ -50,13 +56,12 @@ for (let ii = startTime; ii < endTime+1; ii++) {
   eventBlock.addClass(colorClass);
   eventBlock.addClass('col-10 h-100');
 
-  eventBlock.text(eventData['h'+ii]);
+  // Add previous data
+  eventBlock.text(eventData['h'+hourText]);
 
   let lockButton = $('<button>');
   lockButton.text('🔒');
   lockButton.addClass('saveBtn col-1 h-100');
-
-  // check for previous data
 
 
   // append objects to main container
